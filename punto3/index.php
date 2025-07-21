@@ -1,20 +1,12 @@
 <?php
+require_once __DIR__ . '/../config/config.php';
 require_once __DIR__ . '/src/ConsultaPrimerPartido.php';
-
-//$dsn = "mysql:host=localhost;dbname=torneo_futbol;charset=utf8mb4";
-// $user = "root";
-// $password = "";
-
-$dsn = "pgsql:host=localhost;port=5432;dbname=torneo_futbol";
-$user = "postgres"; 
-$password = "Natalia057";
-
 
 $resultados = [];
 $error = null;
 
 try {
-    $pdo = new PDO($dsn, $user, $password);
+    $pdo = getConnection();
     $consulta = new ConsultaPrimerPartido();
     $resultados = $consulta->obtenerResultados($pdo);
 } catch (PDOException $e) {
